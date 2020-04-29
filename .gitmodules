@@ -1,0 +1,3 @@
+[submodule "gmail-app-script"]
+	path = gmail-app-script
+	url = git@github.com:namaggarwal/gmail-app-script.git
