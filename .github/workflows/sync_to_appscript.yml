@@ -1,0 +1,25 @@
+name: Sync to app script
+
+on:
+  push:
+    branches: [ master ]
+
+jobs:
+  push:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Setting up clasp environment
+      uses: namaggarwal/clasp-token-action@v0.0.1
+      with:
+        client-id: ${{ secrets.APPSCRIPT_CLIENT_ID }}
+        client-secret: ${{ secrets.APPSCRIPT_CLIENT_SECRET }}
+        refresh-token: ${{ secrets.APPSCRIPT_REFRESH_TOKEN }}
+    - name: Use Node.js 12
+      uses: actions/setup-node@v1
+      with:
+        node-version: 12
+    - run: npm ci
+    - run: npm run push --if-present
+      env:
+        CI: true
