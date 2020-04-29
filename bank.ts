@@ -1,25 +1,33 @@
+/* eslint-disable no-unused-vars */
 import GMail from './gmail-app-script/gmail';
+import { TransactionProvider } from './providers';
+import type { BankTransaction } from './providers';
 
-interface TransactionProvider {
-  getTransactions(): string[]
-}
+export default class StandardChartered implements TransactionProvider {
+  static LAST_PROCESSED_TRANSACTION = 'scLastProcessedTransaction';
 
-class StandardChartered implements TransactionProvider {
   private gmailClient: GMail
 
   constructor(gmailClient: GMail) {
     this.gmailClient = gmailClient;
   }
 
-  getTransactions(): string[] {
-    const transactions: string[] = [];
+  getTransactions(lastProcessedTransaction: string): BankTransaction[] {
+    const transactions: BankTransaction[] = [];
     const threads = this.gmailClient.search('label:bank-sc transaction alert primary newer_than:10d');
     const messages = GMail.getFlattenMessagesFromThreads(threads);
-    messages.forEach((message) => {
+    messages.some((message) => {
+      if (message.id === lastProcessedTransaction) {
+        return true;
+      }
       const text = StandardChartered.getTransactionText(message.text);
       if (text) {
-        transactions.push(text);
+        transactions.push({
+          id: message.id,
+          text,
+        });
       }
+      return false;
     });
     return transactions;
   }
@@ -33,5 +41,3 @@ class StandardChartered implements TransactionProvider {
     return null;
   }
 }
-
-export default StandardChartered;

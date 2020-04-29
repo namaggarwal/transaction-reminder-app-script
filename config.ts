@@ -1,0 +1,3 @@
+export default {
+  folderID: 'AQMkADAwATMwMAItMmE4My1iZjAwAC0wMAItMDAKAC4AAAOjSZ0xhCeGRYFc0mKMvH32AQBO44dJgt_pSLEduAi76GaeAAAAEwpTlQAAAA==',
+};
