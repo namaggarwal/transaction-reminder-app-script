@@ -67,6 +67,7 @@ function doGet(e: GoogleAppsScript.Events.DoGet) {
       return HtmlService.createHtmlOutput('Success');
     default:
   }
+  return HtmlService.createHtmlOutput('Error');
 }
 
 function getToDoAccessTokenFromRefreshToken() {
