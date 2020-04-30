@@ -1,6 +1,6 @@
 [submodule "gmail-app-script"]
 	path = gmail-app-script
-	url = git@github.com:namaggarwal/gmail-app-script.git
+	url = https://github.com/namaggarwal/gmail-app-script.git
 [submodule "microsoft-todo-app-script"]
 	path = microsoft-todo-app-script
 	url = git@github.com:namaggarwal/microsoft-todo-app-script.git
