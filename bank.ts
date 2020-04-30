@@ -14,7 +14,7 @@ export default class StandardChartered implements TransactionProvider {
 
   getTransactions(lastProcessedTransaction: string): BankTransaction[] {
     const transactions: BankTransaction[] = [];
-    const threads = this.gmailClient.search('label:bank-sc transaction alert primary newer_than:10d');
+    const threads = this.gmailClient.search('label:bank-sc transaction alert primary newer_than:3h');
     const messages = GMail.getFlattenMessagesFromThreads(threads);
     messages.some((message) => {
       if (message.id === lastProcessedTransaction) {
