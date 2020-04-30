@@ -1,5 +1,7 @@
-import StandardChartered from "./bank"
-import GMail from "./gmail-app-script/gmail"
+/* eslint-disable no-unused-vars */
+import StandardChartered from './bank';
+import GMail from './gmail-app-script/gmail';
+import { TransactionProvider } from './providers';
 
 export default class ProviderFactory {
   static LAST_TRANSACTION = 'last_transaction';
